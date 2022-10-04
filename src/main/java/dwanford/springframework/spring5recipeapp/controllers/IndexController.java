@@ -1,14 +1,32 @@
 package dwanford.springframework.spring5recipeapp.controllers;
 
+import dwanford.springframework.spring5recipeapp.domain.Category;
+import dwanford.springframework.spring5recipeapp.domain.UnitOfMeasure;
+import dwanford.springframework.spring5recipeapp.repositories.CategoryRepository;
+import dwanford.springframework.spring5recipeapp.repositories.UnitOfMeasureRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Controller
 public class IndexController {
 
+    private CategoryRepository categoryRepository;
+    private UnitOfMeasureRepository unitOfMeasureRepository;
+
+    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
+        this.categoryRepository = categoryRepository;
+        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    }
+
     @RequestMapping({"", "/", "index.html"})
     public String getIndexPage(){
-        System.out.println("Index page opened.");
+        Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
+        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
+
+        System.out.println("Category ID is: " + categoryOptional.get().getId());
+        System.out.println("UOM ID is: " + unitOfMeasureOptional.get().getId());
         return "index";
     }
 }
