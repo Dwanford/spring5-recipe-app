@@ -4,6 +4,7 @@ import dwanford.springframework.spring5recipeapp.domain.*;
 import dwanford.springframework.spring5recipeapp.repositories.CategoryRepository;
 import dwanford.springframework.spring5recipeapp.repositories.RecipeRepository;
 import dwanford.springframework.spring5recipeapp.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -198,6 +200,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         tacosRecipe.getCategories().add(mexicanCategory);
 
         recipes.add(tacosRecipe);
+
+        log.debug("Bootstrap logger");
         return recipes;
     }
 
