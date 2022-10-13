@@ -20,40 +20,53 @@
 <body class="bg-light">
 
 <div class="container-sm mt-1 shadow p-4 bg-dark text-light rounded-top">
-  <h1 class="" style="text-align: center">Description Here!</h1>
+  <h1 class="" style="text-align: center" th:text="${recipe.description}">Description Here!</h1>
 </div>
 
-<div class="container shadow mb-5 bg-body text-dark rounded-bottom">
+<div class="container-sm shadow mb-5 bg-body text-dark rounded-bottom">
   <div class="row">
     <div class="col-sm-7">
       <div class="row row-cols-2">
-        <div class="col p-2 border-end border-dark border-bottom border-2">PrepTime</div>
-        <div class="col p-2 border-bottom border-dark border-2">Difficulty</div>
-        <div class="col p-2 border-end border-dark border-bottom border-2">CookTime</div>
-        <div class="col p-2 border-bottom border-dark border-2">Source</div>
-        <div class="col p-2 border-end border-dark border-2">Serving 4s</div>
-        <div class="col p-2">URL</div>
+        <div class="col p-2 border-end border-dark border-bottom border-2">
+          Prep time: <span th:text="${recipe.prepTime}"/></div>
+        <div class="col p-2 border-bottom border-dark border-2">
+          Difficulty: <span th:text="${recipe.difficulty}"/></div>
+        <div class="col p-2 border-end border-dark border-bottom border-2">
+          Cook time: <span th:text="${recipe.cookTime}"/></div>
+        <div class="col p-2 border-bottom border-dark border-2">
+          Source: <span th:text="${recipe.source}"/></div>
+        <div class="col p-2 border-end border-dark border-2">
+          Serving: <span th:text="${recipe.servings}"/><span>s</span></div>
+        <div class="col p-2">
+          URL: <span th:text="${recipe.url}"/></div>
       </div>
       <div class="row">
-        <h2 class="text-center bg-dark text-light rounded p-1">Categories</h2>
-        <div class="row align-items-center text-center">
-          <div class="col">Category</div>
-          <div class="col">Category</div>
-          <div class="col">Category</div>
+        <h2 class="text-center bg-dark text-light rounded-start p-1">Categories</h2>
+        <div class="row text-center">
+          <div class="col" th:each="category : ${recipe.categories}"
+          th:text="${category.description}">Category</div>
+          <div class="col" th:remove="all">Category</div>
+          <div class="col" th:remove="all">Category</div>
         </div>
       </div>
     </div>
     <div class="col-sm-5 border-start border-dark border-5">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" th:each="ingredient : ${recipe.ingredients}">
+          <span th:text="${ingredient.amount}"/>
+          <span> </span><span th:text="${ingredient.uom.description}"/>
+          <span> of </span><span th:text="${ingredient.description}"/></li>
+        <li class="list-group-item" th:remove="all">A second item</li>
+        <li class="list-group-item" th:remove="all">A third item</li>
+        <li class="list-group-item" th:remove="all">A fourth item</li>
+        <li class="list-group-item" th:remove="all">And a fifth one</li>
+      </ul>
     </div>
   </div>
   <div class="row">
     <h1 class="text-center bg-dark text-light rounded p-2">Directions</h1>
     <div class="col-sm-12">
-      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque mi eget massa ornare, nec
+      <p th:text="${recipe.directions}"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque mi eget massa ornare, nec
         lacinia neque cursus. Suspendisse ut mattis massa. Donec mollis tellus vel urna tristique dictum. Integer
         suscipit risus eu massa tincidunt, nec ornare tellus imperdiet. Integer aliquet leo id accumsan scelerisque.
         Sed venenatis erat eget eros vestibulum, eu efficitur enim lacinia. Nullam vel aliquam augue, ut efficitur sem.
@@ -74,7 +87,7 @@
   <div class="row">
     <h1 class="text-center bg-dark text-light rounded p-2">Notes</h1>
     <div class="col-sm-12">
-      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque mi eget massa ornare, nec
+      <p th:text="${recipe.notes.recipeNotes}"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam scelerisque mi eget massa ornare, nec
         lacinia neque cursus. Suspendisse ut mattis massa. Donec mollis tellus vel urna tristique dictum. Integer
         suscipit risus eu massa tincidunt, nec ornare tellus imperdiet. Integer aliquet leo id accumsan scelerisque.
         Sed venenatis erat eget eros vestibulum, eu efficitur enim lacinia. Nullam vel aliquam augue, ut efficitur sem.
