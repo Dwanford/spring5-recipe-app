@@ -38,7 +38,7 @@
         <div class="col p-2 border-end border-dark border-2">
           Serving: <span th:text="${recipe.servings}"/><span>s</span></div>
         <div class="col p-2">
-          URL: <span th:text="${recipe.url}"/></div>
+          URL: <a href="#" th:href="${recipe.url}">Link</a></div>
       </div>
       <div class="row">
         <h2 class="text-center bg-dark text-light rounded-start p-1">Categories</h2>
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="col-sm-5 border-start border-dark border-5 overflow-auto" style="height: 210px">
-      <ul class="list-group list-group-flush">
+      <ul class="list-group list-group-flush" th:if="${not #lists.isEmpty(recipe.ingredients)}">
         <li class="list-group-item" th:each="ingredient : ${recipe.ingredients}">
           <span th:text="${ingredient.amount}"/>
           <span> </span><span th:text="${ingredient.uom.description}"/>
