@@ -8,7 +8,7 @@
 		<version>2.7.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>dwanford.springframework</groupId>
+	<groupId>com.dwanford</groupId>
 	<artifactId>spring5-recipe-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring5-recipe-app</name>
