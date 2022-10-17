@@ -19,8 +19,19 @@
 </head>
 <body class="bg-light">
 
-<div class="container-sm mt-1 shadow p-4 bg-dark text-light rounded-top">
+<div class="container-sm mt-1 shadow bg-dark text-light rounded-top">
   <h1 class="" style="text-align: center" th:text="${recipe.description}">Description Here!</h1>
+
+  <div class="row align-bottom">
+    <div class="col-5 offset-7">
+      <div class="rounded-top p-1 text-light text-center" style="background-color: #383F45">Ingredients
+        <a class="btn btn-secondary btn-sm" href="#"
+           th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}"
+           style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">view</a>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <div class="container-sm shadow mb-5 bg-body text-dark rounded-bottom">
