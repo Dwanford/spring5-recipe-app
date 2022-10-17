@@ -48,7 +48,13 @@
                         <input type="text" class="form-control" placeholder="Prep time" th:field="*{prepTime}"/>
                     </div>
                     <div class="col p-2 border-bottom border-dark border-2">
-                        <select class="form-select" aria-label="Difficulty select">
+                        <select class="form-control" th:field="*{difficulty}" aria-label="Difficulty select">
+                            <option th:each="difficultyValue : ${T(com.dwanford.spring5recipeapp.domain.Difficulty).values()}"
+                                    th:value="${difficultyValue.name()}"
+                                    th:text="${difficultyValue.name()}"
+                            >val</option>
+                        </select>
+                        <select class="form-select" aria-label="Difficulty select" th:remove="all">
                             <option selected value="EASY">Easy</option>
                             <option value="MODERATE">Moderate</option>
                             <option value="HARD">Hard</option>
