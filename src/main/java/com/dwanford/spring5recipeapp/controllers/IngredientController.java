@@ -1,6 +1,8 @@
 package com.dwanford.spring5recipeapp.controllers;
 
 import com.dwanford.spring5recipeapp.commands.IngredientCommand;
+import com.dwanford.spring5recipeapp.commands.RecipeCommand;
+import com.dwanford.spring5recipeapp.commands.UnitOfMeasureCommand;
 import com.dwanford.spring5recipeapp.services.IngredientService;
 import com.dwanford.spring5recipeapp.services.RecipeService;
 import com.dwanford.spring5recipeapp.services.UnitOfMeasureService;
@@ -47,6 +49,22 @@ public class IngredientController {
                                          @PathVariable String id, Model model) {
         model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(Long.parseLong(recipeId), Long.parseLong(id)));
         model.addAttribute("uomList", uomService.listAllUoms());
+
+        return "recipe/ingredient/ingredientForm";
+    }
+
+    @GetMapping
+    @RequestMapping("/recipe/{recipeId}/ingredient/new")
+    public String newRecipe(@PathVariable String recipeId, Model model) {
+        RecipeCommand recipeCommand = recipeService.findCommandById(Long.parseLong(recipeId));
+
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+        model.addAttribute("ingredient", ingredientCommand);
+
+        ingredientCommand.setUom(new UnitOfMeasureCommand());
+
+        model.addAttribute("uomList",  uomService.listAllUoms());
 
         return "recipe/ingredient/ingredientForm";
     }

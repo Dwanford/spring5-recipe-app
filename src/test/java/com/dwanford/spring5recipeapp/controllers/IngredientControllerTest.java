@@ -76,7 +76,7 @@ class IngredientControllerTest {
     }
 
     @Test
-    void testUpdateIngredientForm() throws Exception {
+    void updateIngredientFormTest() throws Exception {
         //given
         IngredientCommand ingredientCommand = new IngredientCommand();
 
@@ -93,7 +93,7 @@ class IngredientControllerTest {
     }
 
     @Test
-    void testSaveOrUpdate() throws Exception {
+    void saveOrUpdateTest() throws Exception {
         //given
         IngredientCommand command = new IngredientCommand();
         command.setId(3L);
@@ -111,6 +111,25 @@ class IngredientControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/ingredient/3/show"));
 
+    }
+
+    @Test
+    void newIngredientFormTest() throws Exception {
+        RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(1L);
+
+        //when
+        when(recipeService.findCommandById(anyLong())).thenReturn(recipeCommand);
+        when(uomService.listAllUoms()).thenReturn(new HashSet<>());
+
+        //then
+        mockMvc.perform(get("/recipe/1/ingredient/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("recipe/ingredient/ingredientForm"))
+                .andExpect(model().attributeExists("ingredient"))
+                .andExpect(model().attributeExists("uomList"));
+
+        verify(recipeService, times(1)).findCommandById(anyLong());
     }
 
 }

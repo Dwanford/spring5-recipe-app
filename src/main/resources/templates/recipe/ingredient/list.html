@@ -19,9 +19,17 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container-sm">
+    <div class="row bg-dark rounded-top text-light mt-2">
+        <div class="col-md-11 ">
+            <h1 class="text-center">Ingredients</h1>
+        </div>
+        <div class="col-md-1">
+            <a class="btn btn-secondary" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/new'}" role="button">New</a>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-8 offset-2 mt-2 mb-2 border rounded border-dark border-5 shadow">
+        <div class="col mb-2 border rounded-bottom border-dark border-5 shadow">
             <table class="table">
                 <thead>
                 <tr>
