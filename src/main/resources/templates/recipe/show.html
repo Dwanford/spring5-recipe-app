@@ -80,7 +80,8 @@
   <div class="row align-items-center">
     <h1 class="text-center bg-dark text-light rounded p-2">Image</h1>
     <div class="col-6 offset-3">
-      <div class="text-center" style="height: 200px">ImagePos</div>
+      <img th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
+           width="200" height="200">
     </div>
     <div class="col-3">
       <a class="btn btn-dark align-self-center" href="#"
