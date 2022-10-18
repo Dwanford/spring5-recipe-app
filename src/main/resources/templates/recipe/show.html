@@ -77,6 +77,16 @@
       </ul>
     </div>
   </div>
+  <div class="row align-items-center">
+    <h1 class="text-center bg-dark text-light rounded p-2">Image</h1>
+    <div class="col-6 offset-3">
+      <div class="text-center" style="height: 200px">ImagePos</div>
+    </div>
+    <div class="col-3">
+      <a class="btn btn-dark align-self-center" href="#"
+         th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
+    </div>
+  </div>
   <div class="row">
     <h1 class="text-center bg-dark text-light rounded p-2">Directions</h1>
     <div class="col-sm-12">
