@@ -4,7 +4,9 @@ import com.dwanford.spring5recipeapp.commands.RecipeCommand;
 import com.dwanford.spring5recipeapp.converters.RecipeCommandToRecipe;
 import com.dwanford.spring5recipeapp.converters.RecipeToRecipeCommand;
 import com.dwanford.spring5recipeapp.domain.Recipe;
+import com.dwanford.spring5recipeapp.exceptions.NotFoundException;
 import com.dwanford.spring5recipeapp.repositories.RecipeRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -36,6 +38,18 @@ class RecipeServiceImplTest {
         MockitoAnnotations.openMocks(this);
 
         recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
+    }
+
+    @Test
+    void getRecipeByIdNotFoundTest() {
+        NotFoundException thrown = Assertions.assertThrows(NotFoundException.class, () -> {
+            Optional<Recipe> recipeOptional = Optional.empty();
+
+            when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+            Recipe recipeReturned = recipeService.findById(1L);
+        });
+        Assertions.assertEquals("Recipe Not Found!", thrown.getMessage());
     }
 
     @Test
