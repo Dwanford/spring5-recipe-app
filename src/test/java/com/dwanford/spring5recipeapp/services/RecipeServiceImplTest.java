@@ -49,7 +49,7 @@ class RecipeServiceImplTest {
 
             Recipe recipeReturned = recipeService.findById(1L);
         });
-        Assertions.assertEquals("Recipe Not Found!", thrown.getMessage());
+        Assertions.assertEquals("Recipe Not Found! For ID value: 1", thrown.getMessage());
     }
 
     @Test
