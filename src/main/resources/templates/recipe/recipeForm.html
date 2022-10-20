@@ -19,12 +19,19 @@
 </head>
 <body class="bg-light">
 <form th:object="${recipe}" th:action="@{/recipe/}" method="post">
+
+    <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger col-2 offset-5 mt-2 text-center">
+        Please correct errors
+    </div>
+
     <input type="hidden" th:field="*{id}">
     <div class="container-sm mt-1 shadow bg-dark text-light rounded-top">
         <div class="row g-7">
 
             <div class="col-4 mt-3 offset-4">
-                <input type="text" class="form-control" placeholder="Recipe Description" th:field="*{description}"/>
+                <input type="text" class="form-control" placeholder="Recipe Description"
+                       th:class="${#fields.hasErrors('description')}
+                        ? 'form-control is-invalid' : 'form-control'" th:field="*{description}"/>
             </div>
 
         </div>
@@ -45,7 +52,9 @@
             <div class="col-sm-7">
                 <div class="row row-cols-2">
                     <div class="col p-2 border-end border-dark border-bottom border-2">
-                        <input type="text" class="form-control" placeholder="Prep time" th:field="*{prepTime}"/>
+                        <input type="text" class="form-control" placeholder="Prep time"
+                               th:class="${#fields.hasErrors('prepTime')}
+                               ? 'form-control is-invalid' : 'form-control'" th:field="*{prepTime}"/>
                     </div>
                     <div class="col p-2 border-bottom border-dark border-2">
                         <select class="form-control" th:field="*{difficulty}" aria-label="Difficulty select">
@@ -61,16 +70,22 @@
                         </select>
                     </div>
                     <div class="col p-2 border-end border-dark border-bottom border-2">
-                        <input type="text" class="form-control" placeholder="Cook time" th:field="*{cookTime}"/>
+                        <input type="text" class="form-control" placeholder="Cook time"
+                               th:class="${#fields.hasErrors('cookTime')}
+                               ? 'form-control is-invalid' : 'form-control'" th:field="*{cookTime}"/>
                     </div>
                     <div class="col p-2 border-bottom border-dark border-2">
                         <input type="text" class="form-control" placeholder="Source" th:field="*{source}"/>
                     </div>
                     <div class="col p-2 border-end border-dark border-2">
-                        <input type="text" class="form-control" placeholder="Serving in seconds" th:field="*{servings}"/>
+                        <input type="text" class="form-control" placeholder="Serving in seconds"
+                               th:class="${#fields.hasErrors('servings')}
+                               ? 'form-control is-invalid' : 'form-control'" th:field="*{servings}"/>
                     </div>
                     <div class="col p-2">
-                        <input type="text" class="form-control" placeholder="URL" th:field="*{url}"/>
+                        <input type="text" class="form-control" placeholder="URL"
+                               th:class="${#fields.hasErrors('url')}
+                               ? 'form-control is-invalid' : 'form-control'" th:field="*{url}"/>
                     </div>
                 </div>
                 <div class="row">
@@ -114,7 +129,9 @@
         <div class="row">
             <h1 class="text-center bg-dark text-light rounded p-2">Directions</h1>
             <div class="col-sm-12">
-                <textarea class="form-control mb-2" rows="3" th:field="*{directions}"></textarea>
+                <textarea class="form-control mb-2" rows="3"
+                          th:class="${#fields.hasErrors('directions')}
+                          ? 'form-control mb-2 is-invalid' : 'form-control mb-2'" th:field="*{directions}"></textarea>
             </div>
         </div>
         <div class="row">
