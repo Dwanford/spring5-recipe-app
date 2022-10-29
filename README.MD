@@ -1,2 +1,1 @@
-# Simple Spring Framework 5 recipe application
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Dwanford/spring5-recipe-app/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Dwanford/spring5-recipe-app/tree/master)
+# Simple Spring Framework 5 recipe application [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Dwanford/spring5-recipe-app/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Dwanford/spring5-recipe-app/tree/master)
